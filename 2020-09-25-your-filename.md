@@ -4,7 +4,7 @@
 ![bomberman](https://i.ytimg.com/vi/ZSHMVzpE1mY/hqdefault.jpg) 
 ---게임의 목적은 폭탄을 이용하여 적들에게 죽지않고 스테이지를 클리어 하는 것이며 방법은 키보드를 이용하여 움직이며 폭탄을 설치할수 있다
 # 2.Game state (Scene)의 수 및 각각의 이름
- -로고 ,메인 메뉴, 옵션 ,게임 맵 ,엔딩
+ -로고 ,메인 메뉴, 옵션 ,게임 맵 ,엔딩  
  -총 스테이트 : 5
 # 3.각 Game state 별 다음 항목
 

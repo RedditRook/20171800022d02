@@ -20,15 +20,8 @@ class Player:
 
     #constructor
     def __init__(self, rand_pos=False):
-        if rand_pos:
-            self.pos = (
-                random.randint(100, 700),
-                random.randint(100, 500)
-            )
-            self.action = random.randint(0, 3)
-        else:
-            self.pos = get_canvas_width() // 2, get_canvas_height() // 2
-            self.action = 3
+        self.pos = 55,510
+        self.action = 3
         self.delta = 0, 0
         self.fidx = random.randint(0, 7)
         self.target = None
@@ -38,12 +31,15 @@ class Player:
             Player.image = gfw_image.load(RES_DIR + '/player.png')
 
     def draw(self):
-        self.image.clip_draw(365, 98, 81, 100, *self.pos)
-
+        self.image.clip_draw(366, 191, 80, 110 , *self.pos,60,90)
+        
     def update(self):
         x,y = self.pos
         dx,dy = self.delta
         self.pos = x+dx, y+dy
+ 
+        print(x)
+        print(y)
 
         if self.target is not None:
             ddx = -self.delta[0]
@@ -58,12 +54,6 @@ class Player:
                     self.speed = 0
                     self.updateAction(0, ddx)
         self.fidx = (self.fidx + 1) % 8
-
-    def ballDelta(self):
-        dxs = [ -3, 3, -1, 1 ]
-        mag = dxs[self.action]
-        dx,dy = self.delta
-        return rand(mag+dx), rand(2+dy)
 
     def updateDelta(self, ddx, ddy):
         dx,dy = self.delta

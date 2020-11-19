@@ -59,12 +59,6 @@ class Player:
             self.updateAction(dx, ddx)
         self.delta = dx, dy
 
-    def updateAction(self, dx, ddx):
-        self.action = \
-            0 if dx < 0 else \
-            1 if dx > 0 else \
-            2 if ddx > 0 else 3
-
     def handle_event(self, e):
         pair = (e.type, e.key)
         if pair in Player.KEY_MAP:

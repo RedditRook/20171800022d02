@@ -18,7 +18,6 @@ class Player:
     KEYDOWN_SPACE = (SDL_KEYDOWN, SDLK_SPACE)
     image = None
 
-    #constructor
     def __init__(self, rand_pos=False):
         self.pos = 55,510
         self.action = 3
@@ -37,9 +36,6 @@ class Player:
         x,y = self.pos
         dx,dy = self.delta
         self.pos = x+dx, y+dy
- 
-        print(x)
-        print(y)
 
         if self.target is not None:
             ddx = -self.delta[0]
@@ -69,19 +65,6 @@ class Player:
             1 if dx > 0 else \
             2 if ddx > 0 else 3
 
-    def appendTarget(self, target):
-        if target == self.pos: return
-        for t in self.targets:
-            if t == target: return
-
-        # helper.set_target(self, target)
-
-        self.targets.append(target)
-        self.speed += 1
-        print('speed =', self.speed, 'to', self.targets[0], 'adding target:', target)
-        helper.set_target(self, self.targets[0])
-        self.updateAction(self.delta[0],0)
-
     def handle_event(self, e):
         pair = (e.type, e.key)
         if pair in Player.KEY_MAP:
@@ -93,5 +76,3 @@ class Player:
                 self.targets = []
                 self.speed = 0
             self.updateDelta(*Player.KEY_MAP[pair])
-        elif e.type == SDL_MOUSEBUTTONDOWN:
-            self.appendTarget((e.x, get_canvas_height() - e.y - 1))

@@ -2,6 +2,7 @@ import random
 from pico2d import *
 import gfw_image
 from gobj import *
+from bomb import Bomb
 import helper
 
 class Player:
@@ -18,8 +19,9 @@ class Player:
     KEYDOWN_SPACE = (SDL_KEYDOWN, SDLK_SPACE)
     image = None
 
-    def __init__(self, rand_pos=False):
-        self.pos = 55,510
+    #constructor
+    def __init__(self, rand_pos=False):        
+        self.pos = get_canvas_width() // 2, get_canvas_height() // 2
         self.action = 3
         self.delta = 0, 0
         self.fidx = random.randint(0, 7)
@@ -30,8 +32,14 @@ class Player:
             Player.image = gfw_image.load(RES_DIR + '/player.png')
 
     def draw(self):
-        self.image.clip_draw(366, 191, 80, 110 , *self.pos,60,90)
+        if(self.action == 3 or self.action==2):
+            self.image.clip_draw(363,195,85,110,*self.pos)
+        elif(self.action ==1):
+            self.image.clip_draw(535,195,85,110,*self.pos)
+        elif(self.action==0):
+            self.image.clip_draw(11,195,85,110,*self.pos)
         
+
     def update(self):
         x,y = self.pos
         dx,dy = self.delta
@@ -59,6 +67,30 @@ class Player:
             self.updateAction(dx, ddx)
         self.delta = dx, dy
 
+    def updateAction(self, dx, ddx):
+        self.action = \
+            0 if dx < 0 else \
+            1 if dx > 0 else \
+            2 if ddx > 0 else 3
+        print(self.action)
+
+    def ballDelta(self):
+        dxs = [ -3, 3, -1, 1 ]
+        mag = dxs[self.action]
+        dx,dy = self.delta
+        return rand(mag+dx), rand(2+dy)
+
+    def appendTarget(self, target):
+        if target == self.pos: return
+        for t in self.targets:
+            if t == target: return
+
+        self.targets.append(target)
+        self.speed += 1
+        print('speed =', self.speed, 'to', self.targets[0], 'adding target:', target)
+        helper.set_target(self, self.targets[0])
+        self.updateAction(self.delta[0],0)
+
     def handle_event(self, e):
         pair = (e.type, e.key)
         if pair in Player.KEY_MAP:
@@ -70,3 +102,10 @@ class Player:
                 self.targets = []
                 self.speed = 0
             self.updateDelta(*Player.KEY_MAP[pair])
+        elif pair == Player.KEYDOWN_SPACE:
+            self.fire()
+
+    def fire(self):
+        bomb = Bomb(self.pos, self.ballDelta())
+        Bomb.bombs.append(bomb)
+        print('Bomb count = %d' % len(Bomb.bombs))

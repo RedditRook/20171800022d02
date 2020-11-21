@@ -1,7 +1,7 @@
 from pico2d import *
 from gobj import *
 import gfw_image
-
+from after import After
 class Bomb:
     bombs = []
     def __init__(self, pos, delta):
@@ -18,3 +18,5 @@ class Bomb:
         print(self.delay)
         if self.delay > 1:
             Bomb.bombs.remove(self)
+            After.after
+

@@ -19,7 +19,6 @@ class Player:
     KEYDOWN_SPACE = (SDL_KEYDOWN, SDLK_SPACE)
     image = None
 
-    #constructor
     def __init__(self, rand_pos=False):        
         self.pos = get_canvas_width() // 2, get_canvas_height() // 2
         self.action = 3
@@ -44,12 +43,12 @@ class Player:
         x,y = self.pos
         dx,dy = self.delta
         self.pos = x+dx, y+dy
+        
 
         if self.target is not None:
             ddx = -self.delta[0]
             helper.move_toward_obj(self)
             if self.target == None:
-                print("Removing target: ", self.targets[0], " from %d target(s)." % len(self.targets))
                 del self.targets[0]
                 if len(self.targets) > 0:
                     helper.set_target(self, self.targets[0])
@@ -72,9 +71,8 @@ class Player:
             0 if dx < 0 else \
             1 if dx > 0 else \
             2 if ddx > 0 else 3
-        print(self.action)
 
-    def ballDelta(self):
+    def bombDelta(self):
         dxs = [ -3, 3, -1, 1 ]
         mag = dxs[self.action]
         dx,dy = self.delta
@@ -87,7 +85,6 @@ class Player:
 
         self.targets.append(target)
         self.speed += 1
-        print('speed =', self.speed, 'to', self.targets[0], 'adding target:', target)
         helper.set_target(self, self.targets[0])
         self.updateAction(self.delta[0],0)
 
@@ -106,6 +103,7 @@ class Player:
             self.fire()
 
     def fire(self):
-        bomb = Bomb(self.pos, self.ballDelta())
-        Bomb.bombs.append(bomb)
+        bomb = Bomb(self.pos, self.bombDelta())
+        if(len(Bomb.bombs) < 3):
+            Bomb.bombs.append(bomb)
         print('Bomb count = %d' % len(Bomb.bombs))

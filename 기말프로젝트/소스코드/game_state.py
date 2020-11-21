@@ -2,6 +2,7 @@ import gfw
 from pico2d import *
 from gobj import *
 from player import Player
+from bomb import Bomb
 
 def enter():
     global field, player
@@ -10,9 +11,11 @@ def enter():
 
 def update():
     player.update()
+    for b in Bomb.bombs: b.update()
 
 def draw():
     field.draw()
+    for b in Bomb.bombs: b.draw()
     player.draw()
 
 def handle_event(e):

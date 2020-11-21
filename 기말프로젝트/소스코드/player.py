@@ -19,7 +19,7 @@ class Player:
     KEYDOWN_SPACE = (SDL_KEYDOWN, SDLK_SPACE)
     image = None
 
-    def __init__(self, rand_pos=False):        
+    def __init__(self):        
         self.pos = get_canvas_width() // 2, get_canvas_height() // 2
         self.action = 3
         self.delta = 0, 0
@@ -43,6 +43,15 @@ class Player:
         dx,dy = self.delta
         self.pos = x+dx, y+dy
         
+        if(x >741):
+            self.pos=741,y+dy
+        if(x <63):
+            self.pos=63,y+dy
+        if(y>507):
+            self.pos=x+dx,507
+        if(y<81):
+            self.pos=x+dx,81
+        print(self.pos)
         if self.target is not None:
             ddx = -self.delta[0]
             helper.move_toward_obj(self)

@@ -23,7 +23,6 @@ class Player:
         self.pos = get_canvas_width() // 2, get_canvas_height() // 2
         self.action = 3
         self.delta = 0, 0
-        self.fidx = random.randint(0, 7)
         self.target = None
         self.targets = []
         self.speed = 0
@@ -44,7 +43,6 @@ class Player:
         dx,dy = self.delta
         self.pos = x+dx, y+dy
         
-
         if self.target is not None:
             ddx = -self.delta[0]
             helper.move_toward_obj(self)
@@ -56,7 +54,6 @@ class Player:
                 else:
                     self.speed = 0
                     self.updateAction(0, ddx)
-        self.fidx = (self.fidx + 1) % 8
 
     def updateDelta(self, ddx, ddy):
         dx,dy = self.delta

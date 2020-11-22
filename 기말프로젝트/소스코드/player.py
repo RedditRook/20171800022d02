@@ -32,29 +32,37 @@ class Player:
             Player.image = gfw_image.load(RES_DIR + '/player.png')
 
     def draw(self):
-        if(self.action == 3 or self.action==2):
-            if(self.animation <0.3):
-                 self.image.clip_draw(363,195,85,110,*self.pos)
-            elif(self.animation >=0.3 and self.animation <0.6):
-                self.image.clip_draw(445,195,85,110,*self.pos)
-            elif(self.animation >=0.6 and self.animation <0.9):
-                self.image.clip_draw(283,195,85,110,*self.pos)
-        elif(self.action ==1):
+        if(self.action == 3 or self.action==2 or self.action==6 or self.action ==7):# 가만히
+                self.image.clip_draw(363,195,85,110,*self.pos)
+        elif(self.action ==1):   #오른쪽
             if(self.animation <0.3):
                 self.image.clip_draw(535,195,85,110,*self.pos)
             elif(self.animation >=0.3 and self.animation <0.6):
                 self.image.clip_draw(625,195,85,110,*self.pos)
             elif(self.animation >=0.6 and self.animation <0.9):
                 self.image.clip_draw(705,195,85,110,*self.pos)
-        elif(self.action==0):
+        elif(self.action==0): #왼쪽
             if(self.animation <0.3):
                 self.image.clip_draw(11,195,85,110,*self.pos)
             elif(self.animation >=0.3 and self.animation <0.6):
                 self.image.clip_draw(97,195,85,110,*self.pos)
             elif(self.animation >=0.6 and self.animation <0.9):
                 self.image.clip_draw(180,197,85,110,*self.pos)
-                
-        
+        elif(self.action==4): #아래
+            if(self.animation <0.3):
+                self.image.clip_draw(363,195,85,110,*self.pos)
+            elif(self.animation >=0.3 and self.animation <0.6):
+                self.image.clip_draw(445,195,85,110,*self.pos)
+            elif(self.animation >=0.6 and self.animation <0.9):
+                self.image.clip_draw(283,195,85,110,*self.pos)
+        elif(self.action==5): #위
+            if(self.animation <0.3):
+                self.image.clip_draw(450,305,85,110,*self.pos)
+            elif(self.animation >=0.3 and self.animation <0.6):
+                self.image.clip_draw(370,305,85,110,*self.pos)
+            elif(self.animation >=0.6 and self.animation <0.9):
+                self.image.clip_draw(286,305,85,110,*self.pos)
+
     def update(self):
         x,y = self.pos
         dx,dy = self.delta
@@ -88,6 +96,8 @@ class Player:
         dy += ddy
         if ddx != 0:
             self.updateAction(dx, ddx)
+        if ddy !=0:
+            self.updateActionY(dy,ddy)
         self.delta = dx, dy
 
     def updateAction(self, dx, ddx):
@@ -95,6 +105,14 @@ class Player:
             0 if dx < 0 else \
             1 if dx > 0 else \
             2 if ddx > 0 else 3
+        print(self.action)
+
+    def updateActionY(self,dy,ddy):
+        self.action = \
+            4 if dy < 0 else \
+            5 if dy >0 else \
+            6 if ddy > 0 else 7
+        print(self.action)
 
     def appendTarget(self, target):
         if target == self.pos: return

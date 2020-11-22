@@ -5,11 +5,13 @@ from player import Player
 from bomb import Bomb
 from after import After
 from unwall import Unwall
+from canwall import Canwall
+
 def enter():
-    global field, player,stage
+    global field, player ,stage
     field = Field()
     player = Player()
-    stage =1
+    stage = 1
 
 def update():
     player.update()
@@ -18,7 +20,8 @@ def update():
 
 def draw():
     field.draw()
-    Unwall.draw(1)
+    Unwall.draw(stage)
+    #Canwall.draw(1)
     for b in Bomb.bombs: b.draw()
     for a in After.after: a.draw()
     player.draw()

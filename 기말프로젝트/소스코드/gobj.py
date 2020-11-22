@@ -8,7 +8,7 @@ def rand(val):
 
 class Field:
     def __init__(self):
-        self.image = load_image(RES_DIR + '/playfield.png')
+        self.image = load_image(RES_DIR + '/playfieldtile.png')
     def draw(self):
         self.image.draw(400, 300)
     def update(self):

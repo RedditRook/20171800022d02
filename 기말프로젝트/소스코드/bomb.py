@@ -2,12 +2,14 @@ from pico2d import *
 from gobj import *
 import gfw_image
 from after import After
+
 class Bomb:
     bombs = []
     def __init__(self, pos):
         imageName = '/bomb.png'
         self.image = gfw_image.load(RES_DIR + imageName)
-        self.pos = pos
+        x ,y =pos
+        self.pos = x , y - 10
         self.delay=0
         self.count=0.01
     def draw(self):

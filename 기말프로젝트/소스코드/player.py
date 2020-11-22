@@ -27,7 +27,7 @@ class Player:
         self.targets = []
         self.speed = 0
         self.animation=0
-        self.count=0.01
+        self.count=0.025
         if Player.image == None:
             Player.image = gfw_image.load(RES_DIR + '/player.png')
 
@@ -64,20 +64,29 @@ class Player:
                 self.image.clip_draw(286,305,85,110,*self.pos)
 
     def update(self):
+        stage1 = ((26,45),(94,90),(162,135),(230,180))
+        
         x,y = self.pos
         dx,dy = self.delta
         self.pos = x+dx, y+dy
         self.animation +=self.count
+
         if(self.animation >0.9):
             self.animation =0
         if(x >741):
             self.pos=741,y+dy
         if(x <60):
             self.pos=60,y+dy
-        if(y>538):
+        if(y> 538):
             self.pos=x+dx,538
-        if(y<81):
+        if(y < 81):
             self.pos=x+dx,81
+
+        unx1 , uny1 =stage1[3]
+        if(unx1 <= x and unx1 + 63 >= x and uny1+20 <= y and uny1 + 80 >= y):
+            print(unx1,uny1 ,"충돌",x,y)
+        
+
         if self.target is not None:
             ddx = -self.delta[0]
             helper.move_toward_obj(self)

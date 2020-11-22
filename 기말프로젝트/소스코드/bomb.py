@@ -15,7 +15,6 @@ class Bomb:
     def update(self):
         x,y = self.pos
         self.delay += self.count
-        print(self.delay)
         if self.delay > 1:
             Bomb.bombs.remove(self)
             self.bombafter()

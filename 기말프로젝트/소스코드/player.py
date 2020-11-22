@@ -72,10 +72,10 @@ class Player:
             self.animation =0
         if(x >741):
             self.pos=741,y+dy
-        if(x <63):
-            self.pos=63,y+dy
-        if(y>507):
-            self.pos=x+dx,507
+        if(x <60):
+            self.pos=60,y+dy
+        if(y>538):
+            self.pos=x+dx,538
         if(y<81):
             self.pos=x+dx,81
         if self.target is not None:
@@ -105,14 +105,12 @@ class Player:
             0 if dx < 0 else \
             1 if dx > 0 else \
             2 if ddx > 0 else 3
-        print(self.action)
 
     def updateActionY(self,dy,ddy):
         self.action = \
             4 if dy < 0 else \
             5 if dy >0 else \
             6 if ddy > 0 else 7
-        print(self.action)
 
     def appendTarget(self, target):
         if target == self.pos: return

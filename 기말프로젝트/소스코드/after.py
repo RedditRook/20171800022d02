@@ -15,6 +15,5 @@ class After:
     def update(self):
         x,y = self.pos
         self.delay += self.count
-        print(self.delay)
         if self.delay > 1:
             After.after.remove(self)

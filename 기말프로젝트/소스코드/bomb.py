@@ -4,7 +4,7 @@ import gfw_image
 from after import After
 class Bomb:
     bombs = []
-    def __init__(self, pos, delta):
+    def __init__(self, pos):
         imageName = '/bomb.png'
         self.image = gfw_image.load(RES_DIR + imageName)
         self.pos = pos
@@ -18,5 +18,8 @@ class Bomb:
         print(self.delay)
         if self.delay > 1:
             Bomb.bombs.remove(self)
-            After.after
+            self.bombafter()
 
+    def bombafter(self):
+        after = After(self.pos)
+        After.after.append(after)

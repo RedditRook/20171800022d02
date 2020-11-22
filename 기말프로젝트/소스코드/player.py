@@ -51,7 +51,6 @@ class Player:
             self.pos=x+dx,507
         if(y<81):
             self.pos=x+dx,81
-        print(self.pos)
         if self.target is not None:
             ddx = -self.delta[0]
             helper.move_toward_obj(self)
@@ -78,12 +77,6 @@ class Player:
             1 if dx > 0 else \
             2 if ddx > 0 else 3
 
-    def bombDelta(self):
-        dxs = [ -3, 3, -1, 1 ]
-        mag = dxs[self.action]
-        dx,dy = self.delta
-        return rand(mag+dx), rand(2+dy)
-
     def appendTarget(self, target):
         if target == self.pos: return
         for t in self.targets:
@@ -109,7 +102,7 @@ class Player:
             self.fire()
 
     def fire(self):
-        bomb = Bomb(self.pos, self.bombDelta())
+        bomb = Bomb(self.pos)
         if(len(Bomb.bombs) < 3):
             Bomb.bombs.append(bomb)
         print('Bomb count = %d' % len(Bomb.bombs))

@@ -13,7 +13,7 @@ def enter():
 def update():
     player.update()
     for b in Bomb.bombs: b.update()
-    for a in After.after: a.updayr()
+    for a in After.after: a.update()
 
 def draw():
     field.draw()

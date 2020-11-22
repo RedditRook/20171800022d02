@@ -26,23 +26,42 @@ class Player:
         self.target = None
         self.targets = []
         self.speed = 0
+        self.animation=0
+        self.count=0.01
         if Player.image == None:
             Player.image = gfw_image.load(RES_DIR + '/player.png')
 
     def draw(self):
         if(self.action == 3 or self.action==2):
-            self.image.clip_draw(363,195,85,110,*self.pos)
+            if(self.animation <0.3):
+                 self.image.clip_draw(363,195,85,110,*self.pos)
+            elif(self.animation >=0.3 and self.animation <0.6):
+                self.image.clip_draw(445,195,85,110,*self.pos)
+            elif(self.animation >=0.6 and self.animation <0.9):
+                self.image.clip_draw(283,195,85,110,*self.pos)
         elif(self.action ==1):
-            self.image.clip_draw(535,195,85,110,*self.pos)
+            if(self.animation <0.3):
+                self.image.clip_draw(535,195,85,110,*self.pos)
+            elif(self.animation >=0.3 and self.animation <0.6):
+                self.image.clip_draw(625,195,85,110,*self.pos)
+            elif(self.animation >=0.6 and self.animation <0.9):
+                self.image.clip_draw(705,195,85,110,*self.pos)
         elif(self.action==0):
-            self.image.clip_draw(11,195,85,110,*self.pos)
+            if(self.animation <0.3):
+                self.image.clip_draw(11,195,85,110,*self.pos)
+            elif(self.animation >=0.3 and self.animation <0.6):
+                self.image.clip_draw(97,195,85,110,*self.pos)
+            elif(self.animation >=0.6 and self.animation <0.9):
+                self.image.clip_draw(180,197,85,110,*self.pos)
+                
         
-
     def update(self):
         x,y = self.pos
         dx,dy = self.delta
         self.pos = x+dx, y+dy
-        
+        self.animation +=self.count
+        if(self.animation >0.9):
+            self.animation =0
         if(x >741):
             self.pos=741,y+dy
         if(x <63):

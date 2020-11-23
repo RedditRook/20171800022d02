@@ -53,3 +53,6 @@
 # 10.주간 커밋 수
 ![커밋 수](https://user-images.githubusercontent.com/34390637/99947969-1424f500-2dbc-11eb-91df-01a32e793c07.PNG)
 
+# 11. 게임 스테이지 모양
+![stage1](https://user-images.githubusercontent.com/34390637/99949831-01f88600-2dbf-11eb-87fa-69655022bb3a.png)
+ - 검정 : 부셔지는 벽 흰색 : 안부셔지는 벽  

@@ -3,6 +3,7 @@ from pico2d import *
 import gfw_image
 from gobj import *
 from bomb import Bomb
+from unwall import Unwall
 import helper
 
 class Player:
@@ -64,7 +65,11 @@ class Player:
                 self.image.clip_draw(286,305,85,110,*self.pos)
 
     def update(self):
-        stage1 = ((26,45),(94,90),(162,135),(230,180))
+        map1 = ((94,45),(94,135),(94,225),(94,320),(94,415),(94,508) ,\
+                (230,45),(230,135),(230,225),(230,320),(230,415),(230,508) ,\
+                (365,45),(365,135),(365,225),(365,320),(365,415),(365,508) ,\
+                (503,45),(503,135),(503,225),(503,320),(503,415),(503,508) ,\
+                (639,45),(639,135),(639,225),(639,320),(639,415),(639,508))
         
         x,y = self.pos
         dx,dy = self.delta
@@ -82,17 +87,16 @@ class Player:
         if(y < 81):
             self.pos=x+dx,81
         
-        unx1 , uny1 =stage1[3]
-        if(self.action ==1 and(unx1 -20 <= x and unx1 + 90 >= x and uny1+20 <= y and uny1 + 80 >= y)):
-            self.pos =x-5,y
-        elif(self.action ==0 and(unx1-20 <= x and unx1 + 90 >= x and uny1+20 <= y and uny1 + 80 >= y)):
-            self.pos =x+5,y
-        elif(self.action ==5 and(unx1-20 <= x and unx1 + 90 >= x and uny1+20 <= y and uny1 + 80 >= y)):
-            self.pos =x,y-5
-        elif(self.action ==4 and(unx1-20 <= x and unx1 + 90 >= x and uny1+20 <= y and uny1 + 80 >= y)):
-            self.pos =x,y+5
-
-
+        for i in range(30):
+            unx1 , uny1 =map1[i]
+            if(self.action ==1 and(unx1 -20 < x and unx1 + 90 > x and uny1+20 < y and uny1 + 80 > y)):
+                self.pos =x-5,y
+            elif(self.action ==0 and(unx1-20 < x and unx1 + 90 > x and uny1+20 < y and uny1 + 80 > y)):
+                self.pos =x+5,y
+            elif(self.action ==5 and(unx1-20 < x and unx1 + 90 > x and uny1+20 < y and uny1 + 80 > y)):
+                self.pos =x,y-5
+            elif(self.action ==4 and(unx1-20 < x and unx1 + 90 > x and uny1+20 < y and uny1 + 80 > y)):
+                self.pos =x,y+5
 
         if self.target is not None:
             ddx = -self.delta[0]

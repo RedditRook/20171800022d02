@@ -8,10 +8,10 @@ from unwall import Unwall
 from canwall import Canwall
 
 def enter():
-    global field, player ,stage
+    global field, player ,map
     field = Field()
     player = Player()
-    stage = 1
+    map = 1
 
 def update():
     player.update()
@@ -20,7 +20,7 @@ def update():
 
 def draw():
     field.draw()
-    Unwall.draw(stage)
+    Unwall.draw(map)
     #Canwall.draw(1)
     for b in Bomb.bombs: b.draw()
     for a in After.after: a.draw()

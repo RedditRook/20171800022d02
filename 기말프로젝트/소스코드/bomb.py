@@ -11,7 +11,7 @@ class Bomb:
         x ,y =pos
         self.pos = x , y - 10
         self.delay=0
-        self.count=0.01
+        self.count=0.005
     def draw(self):
         self.image.draw(*self.pos,50,50)
     def update(self):

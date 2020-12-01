@@ -18,11 +18,4 @@ class Unwall:
         if(map ==1):  # 가로 68 세로 47 #필드 좌하단 26,45 검정 줄 5 
             for i in range(30):
                 image.draw_to_origin(*pos1[i],68,47)
-            #image.draw_to_origin(*pos1[0],68,47)
-            #image.draw_to_origin(*pos1[1],68,47)
-            #image.draw_to_origin(*pos1[2],68,47)
-            #image.draw_to_origin(*pos1[3],68,47)
-            #image.draw_to_origin(*pos1[4],68,47)
-            #image.draw_to_origin(*pos1[5],68,47)
-            #image.draw_to_origin(*pos1[6],68,47)
         

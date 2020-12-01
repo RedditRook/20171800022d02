@@ -8,20 +8,20 @@ import helper
 
 class Player:
     KEY_MAP = {
-        (SDL_KEYDOWN, SDLK_LEFT):  (-1,  0),
-        (SDL_KEYDOWN, SDLK_RIGHT): ( 1,  0),
-        (SDL_KEYDOWN, SDLK_DOWN):  ( 0, -1),
-        (SDL_KEYDOWN, SDLK_UP):    ( 0,  1),
-        (SDL_KEYUP, SDLK_LEFT):    ( 1,  0),
-        (SDL_KEYUP, SDLK_RIGHT):   (-1,  0),
-        (SDL_KEYUP, SDLK_DOWN):    ( 0,  1),
-        (SDL_KEYUP, SDLK_UP):      ( 0, -1),
+        (SDL_KEYDOWN, SDLK_a):  (-1,  0),
+        (SDL_KEYDOWN, SDLK_d): ( 1,  0),
+        (SDL_KEYDOWN, SDLK_s):  ( 0, -1),
+        (SDL_KEYDOWN, SDLK_w):    ( 0,  1),
+        (SDL_KEYUP, SDLK_a):    ( 1,  0),
+        (SDL_KEYUP, SDLK_d):   (-1,  0),
+        (SDL_KEYUP, SDLK_s):    ( 0,  1),
+        (SDL_KEYUP, SDLK_w):      ( 0, -1),
     }
     KEYDOWN_SPACE = (SDL_KEYDOWN, SDLK_SPACE)
     image = None
 
     def __init__(self):        
-        self.pos = get_canvas_width() // 2, get_canvas_height() // 2
+        self.pos = 60,538
         self.action = 3
         self.delta = 0, 0
         self.target = None
@@ -70,7 +70,7 @@ class Player:
                 (365,45),(365,135),(365,225),(365,320),(365,415),(365,508) ,\
                 (503,45),(503,135),(503,225),(503,320),(503,415),(503,508) ,\
                 (639,45),(639,135),(639,225),(639,320),(639,415),(639,508))
-        
+        print("1p",self.pos)
         x,y = self.pos
         dx,dy = self.delta
         self.pos = x+dx, y+dy

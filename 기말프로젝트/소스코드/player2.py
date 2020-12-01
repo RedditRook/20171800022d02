@@ -8,20 +8,20 @@ import helper
 
 class Player2:
     KEY_MAP = {
-        (SDL_KEYDOWN, SDLK_KP_4):  (-1,  0),
-        (SDL_KEYDOWN, SDLK_KP_6): ( 1,  0),
-        (SDL_KEYDOWN, SDLK_KP_5):  ( 0, -1),
-        (SDL_KEYDOWN, SDLK_KP_8):    ( 0,  1),
-        (SDL_KEYUP, SDLK_KP_4):    ( 1,  0),
-        (SDL_KEYUP, SDLK_KP_6):   (-1,  0),
-        (SDL_KEYUP, SDLK_KP_5):    ( 0,  1),
-        (SDL_KEYUP, SDLK_KP_8):      ( 0, -1),
+        (SDL_KEYDOWN, SDLK_LEFT):  (-1,  0),
+        (SDL_KEYDOWN, SDLK_RIGHT): ( 1,  0),
+        (SDL_KEYDOWN, SDLK_DOWN):  ( 0, -1),
+        (SDL_KEYDOWN, SDLK_UP):    ( 0,  1),
+        (SDL_KEYUP, SDLK_LEFT):    ( 1,  0),
+        (SDL_KEYUP, SDLK_RIGHT):   (-1,  0),
+        (SDL_KEYUP, SDLK_DOWN):    ( 0,  1),
+        (SDL_KEYUP, SDLK_UP):      ( 0, -1),
     }
-    KEYDOWN_SPACE = (SDL_KEYDOWN, SDLK_SPACE)
+    KEYDOWN_ENTER = (SDL_KEYDOWN ,SDLK_KP_ENTER)
     image = None
 
     def __init__(self):        
-        self.pos = get_canvas_width() // 2, get_canvas_height() // 2
+        self.pos = 741,82
         self.action = 3
         self.delta = 0, 0
         self.target = None
@@ -30,7 +30,7 @@ class Player2:
         self.animation=0
         self.count=0.025
         if Player2.image == None:
-            Player2.image = gfw_image.load(RES_DIR + '/player.png')
+            Player2.image = gfw_image.load(RES_DIR + '/player2.png')
 
     def draw(self):
         if(self.action == 3 or self.action==2 or self.action==6 or self.action ==7):# 가만히
@@ -70,7 +70,7 @@ class Player2:
                 (365,45),(365,135),(365,225),(365,320),(365,415),(365,508) ,\
                 (503,45),(503,135),(503,225),(503,320),(503,415),(503,508) ,\
                 (639,45),(639,135),(639,225),(639,320),(639,415),(639,508))
-        
+        print("2p",self.pos)
         x,y = self.pos
         dx,dy = self.delta
         self.pos = x+dx, y+dy
@@ -155,7 +155,7 @@ class Player2:
                 self.targets = []
                 self.speed = 0
             self.updateDelta(*Player2.KEY_MAP[pair])
-        elif pair == Player2.KEYDOWN_SPACE:
+        elif pair == Player2.KEYDOWN_ENTER:
             self.fire()
 
     def fire(self):

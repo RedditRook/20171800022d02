@@ -101,6 +101,8 @@ class Player:
             elif(self.action ==4 and(unx1-20 < x and unx1 + 90 > x and uny1+20 < y and uny1 + 80 > y)):
                 self.pos =x,y+5
 
+
+
         if self.target is not None:
             ddx = -self.delta[0]
             helper.move_toward_obj(self)

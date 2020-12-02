@@ -5,7 +5,7 @@ from after import After
 
 class Bomb:
     bombs = []
-    def __init__(self, pos):
+    def __init__(self , pos):
         imageName = '/bomb.png'
         self.image = gfw_image.load(RES_DIR + imageName)
         x ,y =pos

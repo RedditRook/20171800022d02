@@ -22,6 +22,7 @@ class Player:
 
     def __init__(self):        
         self.pos = 60,538
+        self.save = self.pos
         self.action = 3
         self.delta = 0, 0
         self.target = None
@@ -70,7 +71,7 @@ class Player:
                 (365,45),(365,135),(365,225),(365,320),(365,415),(365,508) ,\
                 (503,45),(503,135),(503,225),(503,320),(503,415),(503,508) ,\
                 (639,45),(639,135),(639,225),(639,320),(639,415),(639,508))
-        print("1p",self.pos)
+
         x,y = self.pos
         dx,dy = self.delta
         self.pos = x+dx, y+dy
@@ -159,7 +160,8 @@ class Player:
             self.fire()
 
     def fire(self):
-        bomb = Bomb(self.pos)
+        self.save=self.pos
+        print("1p",self.save)
+        bomb = Bomb(self.save)
         if(len(Bomb.bombs) < 3):
             Bomb.bombs.append(bomb)
-        print('Bomb count = %d' % len(Bomb.bombs))

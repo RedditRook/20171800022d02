@@ -24,7 +24,6 @@ def update():
 def draw():
     field.draw()
     Unwall.draw(map)
-    #Canwall.draw(1)
     for b in Bomb.bombs: b.draw()
     for a in After.after: a.draw()
     player.draw()

@@ -1,4 +1,5 @@
-import random
+import gfw
+import title_state
 from pico2d import *
 import gfw_image
 from gobj import *
@@ -18,6 +19,7 @@ class Player2:
         (SDL_KEYUP, SDLK_UP):      ( 0, -1),
     }
     KEYDOWN_ENTER = (SDL_KEYDOWN ,SDLK_KP_ENTER)
+    KEYDOWN_R = (SDL_KEYDOWN,SDLK_r)
     image = None
 
     def __init__(self):        
@@ -158,10 +160,11 @@ class Player2:
             self.updateDelta(*Player2.KEY_MAP[pair])
         elif pair == Player2.KEYDOWN_ENTER:
             self.fire()
+        elif pair == Player2.KEYDOWN_R:
+            gfw.change(title_state)
 
     def fire(self):
         self.save=self.pos
         print("2p",self.save)
         bomb = Bomb(self.pos)
-        if(len(Bomb.bombs) < 3):
-            Bomb.bombs.append(bomb)
+        Bomb.bombs.append(bomb)

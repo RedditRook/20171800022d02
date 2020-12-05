@@ -24,7 +24,7 @@ class Player:
 
     def __init__(self):        
         self.pos = 60,538
-        self.save = self.pos
+        self.save= 0,0
         self.action = 3
         self.delta = 0, 0
         self.target = None
@@ -89,6 +89,11 @@ class Player:
             self.pos=x+dx,538
         if(y < 81):
             self.pos=x+dx,81
+       
+        sx , sy =self.save
+        if sx - 16 <= x and sx +16 >= x and sy -16 <= y and sy +16 >= y:
+            print("충돌")
+        
         
         for i in range(30):
             unx1 , uny1 =map1[i]
@@ -100,8 +105,6 @@ class Player:
                 self.pos =x,y-5
             elif(self.action ==4 and(unx1-20 < x and unx1 + 90 > x and uny1+20 < y and uny1 + 80 > y)):
                 self.pos =x,y+5
-
-
 
         if self.target is not None:
             ddx = -self.delta[0]
@@ -130,14 +133,12 @@ class Player:
             0 if dx < 0 else \
             1 if dx > 0 else \
             2 if ddx > 0 else 3
-        print(self.action)
 
     def updateActionY(self,dy,ddy):
         self.action = \
             4 if dy < 0 else \
             5 if dy >0 else \
             6 if ddy > 0 else 7
-        print(self.action)
 
     def appendTarget(self, target):
         if target == self.pos: return

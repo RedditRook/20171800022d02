@@ -9,11 +9,10 @@ from unwall import Unwall
 from canwall import Canwall
 
 def enter():
-    global field, player,player2 ,map
+    global field, player,player2
     field = Field()
     player = Player()
     player2 = Player2()
-    map = 1
 
 def update():
     player.update()
@@ -23,7 +22,7 @@ def update():
 
 def draw():
     field.draw()
-    Unwall.draw(map)
+    Unwall.draw()
     for b in Bomb.bombs: b.draw()
     for a in After.after: a.draw()
     player.draw()

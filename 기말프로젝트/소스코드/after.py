@@ -5,7 +5,7 @@ import gfw_image
 class After:
     after = []
     def __init__(self, pos):
-        imageName = '/aftercenter.png'
+        imageName  = '/aftercenter.png'
         imageName1 = '/aftersider.png'
         imageName2 = '/aftersidel.png'
         imageName3 = '/aftersideu.png'
@@ -21,10 +21,14 @@ class After:
     def draw(self):
         x , y =self.pos
         self.image.draw(*self.pos,68,47)
-        self.image1.draw(x+68,y,68,47)
-        self.image2.draw(x-68,y,68,47)
-        self.image3.draw(x,y+47,68,47)
-        self.image4.draw(x,y-47,68,47)
+        if x+68 <741:
+            self.image1.draw(x+68,y,68,47) # 오른쪽
+        if x-68 > 60:
+            self.image2.draw(x-68,y,68,47) # 왼쪽
+        if y+47 <538:
+            self.image3.draw(x,y+47,68,47) # 위
+        if y-47 >81:
+            self.image4.draw(x,y-47,68,47) # 아래
     def update(self):
         x,y = self.pos
         self.delay += self.count

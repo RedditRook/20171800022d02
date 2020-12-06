@@ -1,7 +1,7 @@
 import gfw
 from pico2d import *
 import title_state
-RES_DIR = '../res'
+RES_DIR = './res'
 
 def enter():
     global image,sound

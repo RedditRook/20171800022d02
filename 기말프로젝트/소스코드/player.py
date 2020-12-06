@@ -6,7 +6,6 @@ import gfw_image
 from gobj import *
 from bomb import Bomb
 from unwall import Unwall
-from player2 import Player2
 import helper
 
 class Player:
@@ -94,25 +93,25 @@ class Player:
             self.pos=x+dx,538
         if(y < 81):
             self.pos=x+dx,81
-
         
         sx1 , sy1 =self.save1
         if sx1 - 100 <= x and sx1 +100 >= x and sy1 -70 <= y and sy1 +70 >= y:
-            self.lifecount -=0.1
+            self.lifecount -=0.01
         else:
-            self.lifecount -=0.5
+            self.lifecount -=0.05
         sx2 , sy2 =self.save2
         if sx2 - 100 <= x and sx2 +100 >= x and sy2 -70 <= y and sy2 +70 >= y:
-            self.lifecount -=0.1
+            self.lifecount -=0.01
         else:
-            self.lifecount -=0.5
+            self.lifecount -=0.05
 
         sx3 , sy3 =self.save3
         if sx3 - 100 <= x and sx3 +100 >= x and sy3 -70 <= y and sy3 +70 >= y:
-            self.lifecount -=0.1
+            self.lifecount -=0.01
         else:
-            self.lifecount -=0.5
+            self.lifecount -=0.05
         
+        print("1p",self.lifecount)
         if self.lifecount <0:
             gfw.change(winp2)
             
@@ -198,6 +197,6 @@ class Player:
         if(len(Bomb.bombs)==2):
             self.save3=self.pos
             bomb = Bomb(self.save3)
-        if(len(Bomb.bombs) < 3):
+        if(len(Bomb.bombs) < 1):
             Bomb.bombs.append(bomb)
             self.lifecount +=50

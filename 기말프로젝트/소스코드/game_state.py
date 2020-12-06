@@ -6,7 +6,6 @@ from player2 import Player2
 from bomb import Bomb
 from after import After
 from unwall import Unwall
-from canwall import Canwall
 
 def enter():
     global field, player,player2

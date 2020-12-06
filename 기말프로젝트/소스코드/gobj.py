@@ -1,7 +1,7 @@
 import random
 from pico2d import *
 
-RES_DIR = '../res'
+RES_DIR = './res'
 
 class Field:
     def __init__(self):

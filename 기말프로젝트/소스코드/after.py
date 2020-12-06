@@ -2,6 +2,7 @@ from pico2d import *
 from gobj import *
 import gfw_image
 
+
 class After:
     after = []
     def __init__(self, pos):
@@ -17,20 +18,23 @@ class After:
         self.image4 = gfw_image.load(RES_DIR + imageName4)
         self.pos = pos
         self.delay=0
-        self.count=0.1
+        self.count=0.01
+
     def draw(self):
         x , y =self.pos
         self.image.draw(*self.pos,68,47)
-        if x+68 <741:
+
+        if x+50 <741:
             self.image1.draw(x+68,y,68,47) # 오른쪽
-        if x-68 > 60:
+        if x-50 > 60:
             self.image2.draw(x-68,y,68,47) # 왼쪽
-        if y+47 <538:
+        if y+30 <538:
             self.image3.draw(x,y+47,68,47) # 위
-        if y-47 >81:
+        if y-30 >81:
             self.image4.draw(x,y-47,68,47) # 아래
+
     def update(self):
-        x,y = self.pos
-        self.delay += self.count
-        if self.delay > 1:
+        self.delay +=self.count
+        if self.delay >= 1:
             After.after.remove(self)
+        

@@ -7,6 +7,7 @@ from bomb import Bomb
 from unwall import Unwall
 import helper
 
+
 class Player2:
     KEY_MAP = {
         (SDL_KEYDOWN, SDLK_LEFT):  (-1,  0),
@@ -24,7 +25,7 @@ class Player2:
 
     def __init__(self):        
         self.pos = 741,82
-        self.save = self.pos
+        self.save = 0,0
         self.action = 3
         self.delta = 0, 0
         self.target = None
@@ -32,6 +33,8 @@ class Player2:
         self.speed = 0
         self.animation=0
         self.count=0.025
+        self.lifecount=100
+
         if Player2.image == None:
             Player2.image = gfw_image.load(RES_DIR + '/player2.png')
 
@@ -79,6 +82,7 @@ class Player2:
         self.pos = x+dx, y+dy
         self.animation +=self.count
         bex,bey =self.pos
+
         if(self.animation >0.9):
             self.animation =0
         if(x >741):
@@ -90,6 +94,14 @@ class Player2:
         if(y < 81):
             self.pos=x+dx,81
         
+        
+        print("2p",self.lifecount)
+
+        sx , sy =self.save
+        if sx - 100 <= x and sx +100 >= x and sy -70 <= y and sy +70 >= y:
+            self.lifecount -=0.5
+            print("2p",self.lifecount)
+
         for i in range(30):
             unx1 , uny1 =map1[i]
             if(self.action ==1 and(unx1 -20 < x and unx1 + 90 > x and uny1+20 < y and uny1 + 80 > y)):
@@ -163,8 +175,10 @@ class Player2:
         elif pair == Player2.KEYDOWN_R:
             gfw.change(title_state)
 
+
     def fire(self):
-        self.save=self.pos
-        print("2p",self.save)
-        bomb = Bomb(self.pos)
-        Bomb.bombs.append(bomb)
+            self.save=self.pos
+            bomb = Bomb(self.save)
+            if(len(Bomb.bombs) < 3):
+                Bomb.bombs.append(bomb)
+                self.lifecount +=35

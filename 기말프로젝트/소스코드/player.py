@@ -5,6 +5,7 @@ import gfw_image
 from gobj import *
 from bomb import Bomb
 from unwall import Unwall
+from player2 import Player2
 import helper
 
 class Player:
@@ -18,7 +19,7 @@ class Player:
         (SDL_KEYUP, SDLK_s):    ( 0,  1),
         (SDL_KEYUP, SDLK_w):      ( 0, -1),
     }
-    KEYDOWN_SPACE = (SDL_KEYDOWN, SDLK_g)
+    KEYDOWN_G = (SDL_KEYDOWN, SDLK_g)
     KEYDOWN_R = (SDL_KEYDOWN,SDLK_r)
     image = None
 
@@ -32,6 +33,7 @@ class Player:
         self.speed = 0
         self.animation=0
         self.count=0.025
+        self.lifecount=100
         if Player.image == None:
             Player.image = gfw_image.load(RES_DIR + '/player.png')
 
@@ -79,6 +81,7 @@ class Player:
         self.pos = x+dx, y+dy
         self.animation +=self.count
         bex,bey =self.pos
+
         if(self.animation >0.9):
             self.animation =0
         if(x >741):
@@ -89,11 +92,13 @@ class Player:
             self.pos=x+dx,538
         if(y < 81):
             self.pos=x+dx,81
-       
+
+        print("1p",self.lifecount)
+
         sx , sy =self.save
-        if sx - 16 <= x and sx +16 >= x and sy -16 <= y and sy +16 >= y:
-            print("충돌")
-        
+        if sx - 100 <= x and sx +100 >= x and sy -70 <= y and sy +70 >= y:
+            self.lifecount -=0.5
+            print("1p",self.lifecount)
         
         for i in range(30):
             unx1 , uny1 =map1[i]
@@ -161,13 +166,14 @@ class Player:
                 self.targets = []
                 self.speed = 0
             self.updateDelta(*Player.KEY_MAP[pair])
-        elif pair == Player.KEYDOWN_SPACE:
+        elif pair == Player.KEYDOWN_G:
             self.fire()
         elif pair == Player.KEYDOWN_R:
             gfw.change(title_state)
 
     def fire(self):
-        self.save=self.pos
-        print("1p",self.save)
-        bomb = Bomb(self.save)
-        Bomb.bombs.append(bomb)
+            self.save=self.pos
+            bomb = Bomb(self.save)
+            if(len(Bomb.bombs) < 3):
+                Bomb.bombs.append(bomb)
+            self.lifecount +=35

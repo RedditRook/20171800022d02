@@ -16,7 +16,7 @@ def update():
 
 def draw():
     image.draw(400, 300)
-
+    
 def handle_event(e):
     if e.type == SDL_QUIT:
         gfw.quit()

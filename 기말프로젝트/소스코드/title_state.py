@@ -2,9 +2,14 @@ import gfw
 from pico2d import *
 import game_state
 
+RES_DIR = '../res'
+
 def enter():
-    global image
-    image = load_image('../res/title.png')
+    global image,sound
+    image = load_image(RES_DIR + '/title.png')
+    sound = load_music(RES_DIR + '/title.mp3')
+    sound.set_volume(64)
+    sound.repeat_play()
 
 def update():
     pass

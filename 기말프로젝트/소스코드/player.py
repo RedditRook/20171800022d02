@@ -1,5 +1,6 @@
 import gfw
 import title_state
+import winp2
 from pico2d import *
 import gfw_image
 from gobj import *
@@ -25,7 +26,9 @@ class Player:
 
     def __init__(self):        
         self.pos = 60,538
-        self.save= 0,0
+        self.save1= 0,0
+        self.save2= 0,0
+        self.save3= 0,0
         self.action = 3
         self.delta = 0, 0
         self.target = None
@@ -80,7 +83,6 @@ class Player:
         dx,dy = self.delta
         self.pos = x+dx, y+dy
         self.animation +=self.count
-        bex,bey =self.pos
 
         if(self.animation >0.9):
             self.animation =0
@@ -93,13 +95,28 @@ class Player:
         if(y < 81):
             self.pos=x+dx,81
 
-        print("1p",self.lifecount)
-
-        sx , sy =self.save
-        if sx - 100 <= x and sx +100 >= x and sy -70 <= y and sy +70 >= y:
-            self.lifecount -=0.5
-            print("1p",self.lifecount)
         
+        sx1 , sy1 =self.save1
+        if sx1 - 100 <= x and sx1 +100 >= x and sy1 -70 <= y and sy1 +70 >= y:
+            self.lifecount -=0.1
+        else:
+            self.lifecount -=0.5
+        sx2 , sy2 =self.save2
+        if sx2 - 100 <= x and sx2 +100 >= x and sy2 -70 <= y and sy2 +70 >= y:
+            self.lifecount -=0.1
+        else:
+            self.lifecount -=0.5
+
+        sx3 , sy3 =self.save3
+        if sx3 - 100 <= x and sx3 +100 >= x and sy3 -70 <= y and sy3 +70 >= y:
+            self.lifecount -=0.1
+        else:
+            self.lifecount -=0.5
+        
+        if self.lifecount <0:
+            gfw.change(winp2)
+            
+
         for i in range(30):
             unx1 , uny1 =map1[i]
             if(self.action ==1 and(unx1 -20 < x and unx1 + 90 > x and uny1+20 < y and uny1 + 80 > y)):
@@ -172,8 +189,15 @@ class Player:
             gfw.change(title_state)
 
     def fire(self):
-            self.save=self.pos
-            bomb = Bomb(self.save)
-            if(len(Bomb.bombs) < 3):
-                Bomb.bombs.append(bomb)
-            self.lifecount +=35
+        if(len(Bomb.bombs)==0):
+            self.save1=self.pos
+            bomb = Bomb(self.save1)
+        if(len(Bomb.bombs)==1):
+            self.save2=self.pos
+            bomb = Bomb(self.save2)
+        if(len(Bomb.bombs)==2):
+            self.save3=self.pos
+            bomb = Bomb(self.save3)
+        if(len(Bomb.bombs) < 3):
+            Bomb.bombs.append(bomb)
+            self.lifecount +=50

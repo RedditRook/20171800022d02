@@ -1,5 +1,6 @@
 import gfw
 import title_state
+import winp1
 from pico2d import *
 import gfw_image
 from gobj import *
@@ -25,7 +26,9 @@ class Player2:
 
     def __init__(self):        
         self.pos = 741,82
-        self.save = 0,0
+        self.save1= 0,0
+        self.save2= 0,0
+        self.save3= 0,0
         self.action = 3
         self.delta = 0, 0
         self.target = None
@@ -81,7 +84,6 @@ class Player2:
         dx,dy = self.delta
         self.pos = x+dx, y+dy
         self.animation +=self.count
-        bex,bey =self.pos
 
         if(self.animation >0.9):
             self.animation =0
@@ -94,13 +96,26 @@ class Player2:
         if(y < 81):
             self.pos=x+dx,81
         
-        
-        print("2p",self.lifecount)
 
-        sx , sy =self.save
-        if sx - 100 <= x and sx +100 >= x and sy -70 <= y and sy +70 >= y:
+        sx1 , sy1 =self.save1
+        if sx1 - 100 <= x and sx1 +100 >= x and sy1 -70 <= y and sy1 +70 >= y:
+            self.lifecount -=0.1
+        else:
             self.lifecount -=0.5
-            print("2p",self.lifecount)
+        sx2 , sy2 =self.save2
+        if sx2 - 100 <= x and sx2 +100 >= x and sy2 -70 <= y and sy2 +70 >= y:
+            self.lifecount -=0.1
+        else:
+            self.lifecount -=0.5
+
+        sx3 , sy3 =self.save3
+        if sx3 - 100 <= x and sx3 +100 >= x and sy3 -70 <= y and sy3 +70 >= y:
+            self.lifecount -=0.1
+        else:
+            self.lifecount -=0.5
+
+        if self.lifecount <0:
+            gfw.change(winp1)
 
         for i in range(30):
             unx1 , uny1 =map1[i]
@@ -140,14 +155,12 @@ class Player2:
             0 if dx < 0 else \
             1 if dx > 0 else \
             2 if ddx > 0 else 3
-        print(self.action)
 
     def updateActionY(self,dy,ddy):
         self.action = \
             4 if dy < 0 else \
             5 if dy >0 else \
             6 if ddy > 0 else 7
-        print(self.action)
 
     def appendTarget(self, target):
         if target == self.pos: return
@@ -177,8 +190,15 @@ class Player2:
 
 
     def fire(self):
-            self.save=self.pos
-            bomb = Bomb(self.save)
-            if(len(Bomb.bombs) < 3):
-                Bomb.bombs.append(bomb)
-                self.lifecount +=35
+        if(len(Bomb.bombs)==0):
+            self.save1=self.pos
+            bomb = Bomb(self.save1)
+        if(len(Bomb.bombs)==1):
+            self.save2=self.pos
+            bomb = Bomb(self.save2)
+        if(len(Bomb.bombs)==2):
+            self.save3=self.pos
+            bomb = Bomb(self.save3)
+        if(len(Bomb.bombs) < 3):
+            Bomb.bombs.append(bomb)
+            self.lifecount +=50

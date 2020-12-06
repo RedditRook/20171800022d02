@@ -12,12 +12,19 @@ class Bomb:
         self.pos = x , y - 10
         self.delay=0
         self.count=0.005
+
+        self.sound1=load_wav(RES_DIR + '/a.wav')
+        self.sound1.set_volume(16)
+        self.sound2=load_wav(RES_DIR + '/b.wav')
+        self.sound2.set_volume(64)
     def draw(self):
         self.image.draw(*self.pos,50,50)
     def update(self):
         x,y = self.pos
         self.delay += self.count
+        self.sound1.play()
         if self.delay > 1:
+            self.sound2.play()
             Bomb.bombs.remove(self)
             self.bombafter()
 

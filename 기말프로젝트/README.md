@@ -59,3 +59,8 @@
 
 # 12. 최종 게임 방식  
 - 자신의 살수있는 시간이 얼마나 남았는지 모르는 상태로 폭탄을 설치하면 자신의 시간이 증가 그러나 지속적으로 감소 2명의 플레이어가 설치할수 있는 갯수는 일치 먼저 설치하는 사람이 유리  자신의 폭탄 설치 구역안에 있으면 시간 감소가 줄어들음 먼저 줄어들어서 0이 되면 패배
+
+# 13. 발표 영상 링크  
+- https://youtu.be/4k9Cunbn9e0 3차 발표
+https://www.youtube.com/watch?v=cPa2jgTGf1w 2차 발표
+https://www.youtube.com/watch?v=rJJG4CN4TTU 1차 발표

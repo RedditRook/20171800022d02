@@ -52,7 +52,10 @@
 ![image](https://user-images.githubusercontent.com/34390637/99948823-631f5a00-2dbd-11eb-8df5-cace75dbd760.png)
  
 # 10.주간 커밋 수
+-2차 발표
 ![커밋 수](https://user-images.githubusercontent.com/34390637/99947969-1424f500-2dbc-11eb-91df-01a32e793c07.PNG)
+-3차 발표
+![image](https://user-images.githubusercontent.com/34390637/101732728-03d18180-3b01-11eb-8ef1-ac1fb7292cd8.png)
 
 # 11. 게임 스테이지 모양
 ![stage1](https://user-images.githubusercontent.com/34390637/99949831-01f88600-2dbf-11eb-87fa-69655022bb3a.png)

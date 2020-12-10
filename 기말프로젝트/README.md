@@ -72,3 +72,8 @@
 - https://youtu.be/4k9Cunbn9e0 3차 발표
 https://www.youtube.com/watch?v=cPa2jgTGf1w 2차 발표
 https://www.youtube.com/watch?v=rJJG4CN4TTU 1차 발표
+
+# 14. 게임 이미지
+![image](https://user-images.githubusercontent.com/34390637/101733102-a12cb580-3b01-11eb-89e1-ab015f96fee9.png)
+![image](https://user-images.githubusercontent.com/34390637/101733236-df29d980-3b01-11eb-81db-e05a8b3bff47.png)
+![image](https://user-images.githubusercontent.com/34390637/101733265-e9e46e80-3b01-11eb-826b-5f80788723da.png)
